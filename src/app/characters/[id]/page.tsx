@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export default async function CharacterDetail({ params }: { params: { id: string } }) {
-  const response = await (await fetch(`https://rickandmortyapi.com/api/character/${params.id}`))
+  const response = await fetch(`https://rickandmortyapi.com/api/character/${params.id}`)
   const data: DataProps = await response.json()
 
   return (
@@ -57,7 +57,7 @@ export default async function CharacterDetail({ params }: { params: { id: string
         <div className="relative w-full max-w-xs">
           <Image src={frame} alt="Picture Frame" className="z-[1] relative top-0 left-0 w-full" />
           <Image src={data.image} alt="Rick Picture" width={250} height={250} className="w-full px-4 pt-8 scale-[1.03] absolute top-0" />
-          <h2 className="z-[2] text-black absolute bottom-0 font-handwrite text-4xl p-4 w-full text-center truncate">{data.name}</h2>
+          <h2 title={data.name} className="z-[2] text-black absolute bottom-0 font-handwrite text-4xl p-4 w-full text-center truncate">{data.name}</h2>
         </div>
 
         <div className="relative w-full max-w-sm">
