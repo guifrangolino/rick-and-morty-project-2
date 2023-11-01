@@ -4,21 +4,19 @@ import { useState } from 'react'
 import { Filter } from "@/components/Filter";
 import { FilterInput } from "@/components/Filter/FilterInput";
 import { useSearchParams } from "next/navigation";
-import { speciesOptions, genderOptions, statusOptions } from '@/assets/selectsOptions'
+import { locationsTypeOptions, dimensionsOptions } from '@/assets/selectsOptions'
 
-export function CharactersFilter() {
+export function LocationsFilter() {
   const searchParams = useSearchParams()
   const name = searchParams.get('name')
   const [inputValue, setInputValue] = useState(searchParams.get('name') ?? '')
-  const species = searchParams.get('species')
-  const gender = searchParams.get('gender')
-  const status = searchParams.get('status')
+  const type = searchParams.get('type')
+  const dimension = searchParams.get('dimension')
 
   const paramsList: { [index: string]: any } = {
     name,
-    species,
-    gender,
-    status
+    type,
+    dimension
   }
 
   return (
@@ -26,24 +24,17 @@ export function CharactersFilter() {
       <Filter.Root>
         <FilterInput inputValue={inputValue} setInputValue={setInputValue} paramsList={paramsList} />
         <Filter.Select
-          placeholder="Species"
-          type='species'
-          selectOptions={speciesOptions}
-          queryParam={species}
+          placeholder="Type"
+          type='type'
+          selectOptions={locationsTypeOptions}
+          queryParam={type}
           paramsList={paramsList}
         />
         <Filter.Select
-          placeholder="Gender"
-          type='gender'
-          selectOptions={genderOptions}
-          queryParam={gender}
-          paramsList={paramsList}
-        />
-        <Filter.Select
-          placeholder="Status"
-          type='status'
-          selectOptions={statusOptions}
-          queryParam={status}
+          placeholder="Dimension"
+          type='dimension'
+          selectOptions={dimensionsOptions}
+          queryParam={dimension}
           paramsList={paramsList}
         />
       </Filter.Root>

@@ -4,32 +4,28 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
-import { CharactersListSkeleton } from "./CharactersListSkeleton";
 import { useState } from 'react'
-import { CharacterNote } from "./CharacterNote";
+import { LocationListSkeleton } from './LocationListSkeleton';
+import { Note } from './Note';
 
 type DataProps = {
   id: number
   name: string
-  origin: {
-    url: string
-  },
-  image: string
+  type: string
 }
 
-export function CharactersList() {
+export function LocationsList() {
   const searchParams = useSearchParams()
   const name = searchParams.get('name')
-  const species = searchParams.get('species')
-  const gender = searchParams.get('gender')
-  const status = searchParams.get('status')
+  const type = searchParams.get('type')
+  const dimension = searchParams.get('dimension')
   const [pageLimit, setPageLimit] = useState(1)
 
   const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery<DataProps[]>(
     {
-      queryKey: ['characters', name, species, gender, status],
+      queryKey: ['characters', name, type, dimension],
       queryFn: async ({ pageParam }) => {
-        const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${pageParam}&name=${name ?? ''}&species=${species ?? ''}&gender=${gender ?? ''}&status=${status ?? ''}`)
+        const response = await axios.get(`https://rickandmortyapi.com/api/location?page=${pageParam}&name=${name ?? ''}&type=${type ?? ''}&dimension=${dimension ?? ''}`)
 
         response.data.info.pages !== pageLimit && setPageLimit(response.data.info.pages)
 
@@ -43,14 +39,16 @@ export function CharactersList() {
   return (
     <>
       <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly my-4">
-        {/* <CharactersListSkeleton /> */}
-        {isFetching && <CharactersListSkeleton />}
+        {isFetching && <LocationListSkeleton />}
         {data?.pages.map(page => (
-          page.map((char, index) => (
-            <CharacterNote key={index} id={char.id} image={char.image} name={char.name} />
+          page.map((location, index) => (
+            <Note.Root key={index} href={`/locations/${location.id}`}>
+              <Note.Title text={location.name} />
+              <Note.Content text={location.type} underline />
+            </Note.Root>
           ))
         ))}
-        {isFetchingNextPage && <CharactersListSkeleton />}
+        {isFetchingNextPage && <LocationListSkeleton />}
       </ul>
       {hasNextPage &&
         <Button
