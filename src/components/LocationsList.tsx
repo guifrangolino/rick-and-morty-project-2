@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import { useState } from 'react'
 import { LocationListSkeleton } from './LocationListSkeleton';
 import { Note } from './Note';
+import { NotFound } from './NotFound';
 
 type DataProps = {
   id: number
@@ -21,18 +22,26 @@ export function LocationsList() {
   const dimension = searchParams.get('dimension')
   const [pageLimit, setPageLimit] = useState(1)
 
-  const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery<DataProps[]>(
+  const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage, isError } = useInfiniteQuery<DataProps[]>(
     {
       queryKey: ['characters', name, type, dimension],
       queryFn: async ({ pageParam }) => {
-        const response = await axios.get(`https://rickandmortyapi.com/api/location?page=${pageParam}&name=${name ?? ''}&type=${type ?? ''}&dimension=${dimension ?? ''}`)
+        try {
+          const response = await axios.get(`https://rickandmortyapi.com/api/location?page=${pageParam}&name=${name ?? ''}&type=${type ?? ''}&dimension=${dimension ?? ''}`)
 
-        response.data.info.pages !== pageLimit && setPageLimit(response.data.info.pages)
+          response.data.info.pages !== pageLimit && setPageLimit(response.data.info.pages)
 
-        return response.data.results
+          return response.data.results
+        } catch (error) {
+          // @ts-ignore
+          if (error.response.status === 404) {
+            throw Error
+          }
+        }
       },
       initialPageParam: 1,
-      getNextPageParam: (_lastPage, allPages) => allPages.length < pageLimit ? allPages.length + 1 : undefined
+      getNextPageParam: (_lastPage, allPages) => allPages.length < pageLimit ? allPages.length + 1 : undefined,
+      retry: false
     }
   )
 
@@ -40,7 +49,10 @@ export function LocationsList() {
     <>
       <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly my-4">
         {isFetching && <LocationListSkeleton />}
-        {data?.pages.map(page => (
+
+        {isError && <NotFound text='Location Not Found.' />}
+
+        {!isError && data?.pages.map(page => (
           page.map((location, index) => (
             <Note.Root key={index} href={`/locations/${location.id}`}>
               <Note.Title text={location.name} />
@@ -50,7 +62,8 @@ export function LocationsList() {
         ))}
         {isFetchingNextPage && <LocationListSkeleton />}
       </ul>
-      {hasNextPage &&
+
+      {hasNextPage && !isError &&
         <Button
           variant="secondary"
           className="my-4"

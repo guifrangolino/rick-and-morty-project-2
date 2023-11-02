@@ -43,7 +43,7 @@ export function FilterSelect({ queryParam, placeholder, type, selectOptions, par
       onValueChange={(selectValue) => handleFilterChange(type, selectValue)}
       defaultValue={queryParam ?? undefined}
     >
-      <SelectTrigger className="w-full max-w-[240px]">
+      <SelectTrigger className="w-full max-w-[240px] truncate">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent className="overflow-y-auto max-h-[13rem]">
