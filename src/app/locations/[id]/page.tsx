@@ -32,6 +32,8 @@ export default async function LocationDetail({ params }: { params: { id: string 
   const response = await fetch(`https://rickandmortyapi.com/api/location/${params.id}`)
   const data: DataProps = await response.json()
 
+  // console.log(data.residents.length)
+
   return (
     <main className="max-w-7xl w-full m-auto flex flex-col items-center px-6 py-2">
       <Button asChild className="self-start mt-3">
@@ -52,14 +54,16 @@ export default async function LocationDetail({ params }: { params: { id: string 
       </div>
 
       <div className="w-full">
-        <h3 className="text-3xl my-4">Residents</h3>
-        <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-4 mb-4">
-          {data.residents.map(resident => {
-            const residentUrlParts = resident.split('/').filter(Boolean)
-            const residentId = Number(residentUrlParts[residentUrlParts.length - 1])
+        <h3 className="text-3xl my-4 text-center md:text-start">Residents</h3>
+        <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-8 mb-4">
+          {data.residents.length <= 0
+            ? <p className="mt-4">This location do not have residents.</p>
+            : data.residents.map(resident => {
+              const residentUrlParts = resident.split('/').filter(Boolean)
+              const residentId = Number(residentUrlParts[residentUrlParts.length - 1])
 
-            return <CharacterMember key={residentId} id={residentId} />
-          })}
+              return <CharacterMember key={residentId} id={residentId} />
+            })}
         </ul>
       </div>
 

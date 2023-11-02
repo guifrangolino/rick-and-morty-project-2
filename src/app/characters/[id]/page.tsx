@@ -61,7 +61,7 @@ export default async function CharacterDetail({ params }: { params: { id: string
       </Button>
 
       <div className="w-full flex justify-around items-center mt-2 mb-8">
-        <div className="relative w-full max-w-xs">
+        <div className="relative w-full max-w-xs animate-entrance-center">
           <Image src={frame} alt="Picture Frame" className="z-[1] relative top-0 left-0 w-full" />
           <Image src={data.image} alt="Rick Picture" width={250} height={250} className="w-full px-4 pt-8 scale-[1.03] absolute top-0" />
           <h2 title={data.name} className="z-[2] text-black absolute bottom-0 font-handwrite text-4xl p-4 w-full text-center truncate">{data.name}</h2>
@@ -83,8 +83,8 @@ export default async function CharacterDetail({ params }: { params: { id: string
       </div>
 
       <div className="w-full">
-        <h3 className="text-3xl my-4">Episodes</h3>
-        <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-4 mb-4">
+        <h3 className="text-3xl my-4 text-center md:text-start animate-entrance-left">Episodes</h3>
+        <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-8 mb-4">
           {data.episode.map((ep, index) => {
             const epUrlParts = ep.split('/').filter(Boolean)
             const epId = Number(epUrlParts[epUrlParts.length - 1])

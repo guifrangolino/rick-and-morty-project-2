@@ -9,7 +9,7 @@ type InformationRootProps = {
 
 export function InformationRoot({ children }: InformationRootProps) {
   return (
-    <div className="relative w-full max-w-sm">
+    <div className="relative w-full max-w-sm animate-entrance-center">
       <Image src={topPart} alt="Picture Frame" className="w-full" />
       <div className="w-full bg-[rgba(238,238,238,255)] px-4 py-2 font-handwrite text-black">
         {children}

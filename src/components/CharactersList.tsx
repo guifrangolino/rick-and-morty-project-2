@@ -43,7 +43,6 @@ export function CharactersList() {
   return (
     <>
       <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly my-4">
-        {/* <CharactersListSkeleton /> */}
         {isFetching && <CharactersListSkeleton />}
         {data?.pages.map(page => (
           page.map((char, index) => (

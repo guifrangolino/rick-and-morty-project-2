@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Characters() {
   return (
     <main className="max-w-7xl w-full m-auto flex flex-col items-center px-6 py-2">
-      <Image src={logo} alt="Page Logo" className="w-full max-w-md my-4" />
+      <Image src={logo} alt="Page Logo" className="w-full max-w-md my-4 animate-entrance-center" />
 
       <CharactersFilter />
 

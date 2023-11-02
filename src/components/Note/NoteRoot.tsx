@@ -10,7 +10,7 @@ type NoteRootProps = {
 
 export function NoteRoot({ children, href }: NoteRootProps) {
   return (
-    <li className="relative w-full max-w-[240px] h-48 hover:scale-105 transition-transform">
+    <li className="relative w-full max-w-[240px] h-48 hover:scale-105 transition-transform animate-entrance-center">
       <Image src={frame} alt="Picture Frame" className="absolute top-0 left-0 w-full" />
       <Link href={href} className="w-full h-full flex flex-col items-center justify-center text-center text-black font-handwrite relative p-4 pt-8">
         {children}

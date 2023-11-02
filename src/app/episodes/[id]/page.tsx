@@ -52,8 +52,8 @@ export default async function EpisodeDetail({ params }: { params: { id: string }
       </div>
 
       <div className="w-full">
-        <h3 className="text-3xl my-4">Cast</h3>
-        <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-4 mb-4">
+        <h3 className="text-3xl my-4 text-center md:text-start animate-entrance-left">Cast</h3>
+        <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-8 mb-4">
           {data.characters.map(char => {
             const charUrlParts = char.split('/').filter(Boolean)
             const charId = Number(charUrlParts[charUrlParts.length - 1])
