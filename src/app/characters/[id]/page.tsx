@@ -85,11 +85,11 @@ export default async function CharacterDetail({ params }: { params: { id: string
       <div className="w-full">
         <h3 className="text-3xl my-4">Episodes</h3>
         <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-4 mb-4">
-          {data.episode.map(ep => {
+          {data.episode.map((ep, index) => {
             const epUrlParts = ep.split('/').filter(Boolean)
             const epId = Number(epUrlParts[epUrlParts.length - 1])
 
-            return <CharacterEpisodeNote id={epId} key={data.id} />
+            return <CharacterEpisodeNote id={epId} key={index} />
           })}
         </ul>
       </div>
