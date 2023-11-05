@@ -93,7 +93,7 @@ module.exports = {
         'md-lg': '884px',
       },
       minHeight: {
-        'homeHeight': ['calc(100vh-74px)', 'calc(100dvh-74px)', 'calc(100svh-74px)'],
+        'homeHeight': ['calc(100vh - 74px)', 'calc(100dvh - 74px)', 'calc(100svh - 74px)'],
       },
       gridTemplateColumns: {
         'lg-screen': 'repeat(auto-fit, minmax(240px, 1fr))',
