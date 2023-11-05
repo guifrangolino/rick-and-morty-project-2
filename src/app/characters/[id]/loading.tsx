@@ -5,7 +5,7 @@ export default function characterLoading() {
   return (
     <main className="max-w-7xl w-full m-auto flex flex-col items-center px-6 py-2">
       <BackButton />
-      <div className="w-full flex justify-around items-center gap-6 mt-2 mb-8">
+      <div className="w-full flex flex-col md:flex-row justify-around items-center gap-6 mt-2 mb-8">
         <Skeleton className="w-full max-w-xs aspect-char-note" />
         <Skeleton className="w-full max-w-sm aspect-info-note" />
       </div>
