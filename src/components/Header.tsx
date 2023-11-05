@@ -17,19 +17,19 @@ export function Header() {
         <nav className="flex gap-4">
           <Link
             href='/characters'
-            className={`font-medium hover:opacity-75 transition-opacity ${pathname.startsWith('/characters') && 'text-primary'}`}
+            className={`text-sm sm:text-base font-medium hover:opacity-75 transition-opacity ${pathname.startsWith('/characters') && 'text-primary'}`}
           >
             Characters
           </Link>
           <Link
             href='/locations'
-            className={`font-medium hover:opacity-75 transition-opacity ${pathname.startsWith('/locations') && 'text-primary'}`}
+            className={`text-sm sm:text-base font-medium hover:opacity-75 transition-opacity ${pathname.startsWith('/locations') && 'text-primary'}`}
           >
             Locations
           </Link>
           <Link
             href='/episodes'
-            className={`font-medium hover:opacity-75 transition-opacity ${pathname.startsWith('/episodes') && 'text-primary'}`}
+            className={`text-sm sm:text-base font-medium hover:opacity-75 transition-opacity ${pathname.startsWith('/episodes') && 'text-primary'}`}
           >
             Episodes
           </Link>
