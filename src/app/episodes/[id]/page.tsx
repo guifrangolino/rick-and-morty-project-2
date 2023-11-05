@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
-import Link from "next/link"
 import { Metadata } from 'next'
 import { Information } from "@/components/InformationNote"
 import { CharacterMember } from "@/components/CharacterMember"
+import { BackButton } from "@/components/BackButton"
 
 type DataProps = {
   id: number
@@ -34,12 +32,7 @@ export default async function EpisodeDetail({ params }: { params: { id: string }
 
   return (
     <main className="max-w-7xl w-full m-auto flex flex-col items-center px-6 py-2">
-      <Button asChild className="self-start mt-3">
-        <Link href="/locations">
-          <ArrowLeft className="mr-2 w-5 h-5" />
-          Go Back
-        </Link>
-      </Button>
+      <BackButton />
 
       <div className="w-full flex justify-around items-center my-8">
         <Information.Root>

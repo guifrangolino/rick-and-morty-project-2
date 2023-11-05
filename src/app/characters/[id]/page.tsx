@@ -1,11 +1,9 @@
-import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight } from "lucide-react"
-import Link from "next/link"
 import frame from '@/assets/img-frame.png'
 import Image from "next/image"
 import { Metadata } from 'next'
 import { CharacterEpisodeNote } from "@/components/CharacterEpisodeNote"
 import { Information } from "@/components/InformationNote"
+import { BackButton } from "@/components/BackButton"
 
 type DataProps = {
   id: number
@@ -53,12 +51,7 @@ export default async function CharacterDetail({ params }: { params: { id: string
 
   return (
     <main className="max-w-7xl w-full m-auto flex flex-col items-center px-6 py-2">
-      <Button asChild className="self-start mt-3">
-        <Link href="/characters">
-          <ArrowLeft className="mr-2 w-5 h-5" />
-          Go Back
-        </Link>
-      </Button>
+      <BackButton />
 
       <div className="w-full flex flex-col md:flex-row gap-6 justify-around items-center my-8">
         <div className="relative w-full max-w-xs animate-entrance-center">
@@ -76,7 +69,13 @@ export default async function CharacterDetail({ params }: { params: { id: string
             <Information.Item content={`Species: ${data.species}`} />
             <Information.Item content={`Origin: ${data.origin.name}`} />
             <Information.Item content={`Type: ${data.type === '' ? 'Unknown' : data.type}`} />
-            <Information.LinkItem content={`Location: ${data.location.name}`} href={`/locations/${getLocationId(data.location.url)}`} />
+            {Number.isNaN(getLocationId(data.location.url)) ?
+              <Information.Item content={`Location: ${data.location.name}`} /> :
+              <Information.LinkItem
+                content={`Location: ${data.location.name}`}
+                href={`/locations/${getLocationId(data.location.url)}`}
+              />
+            }
           </Information.List>
         </Information.Root>
 
