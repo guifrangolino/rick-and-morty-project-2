@@ -41,7 +41,7 @@ export default async function EpisodeDetail({ params }: { params: { id: string }
         </Link>
       </Button>
 
-      <div className="w-full flex justify-around items-center mt-2 mb-8">
+      <div className="w-full flex justify-around items-center my-8">
         <Information.Root>
           <Information.Title title={data.name} />
           <Information.List>
@@ -53,7 +53,7 @@ export default async function EpisodeDetail({ params }: { params: { id: string }
 
       <div className="w-full">
         <h3 className="text-3xl my-4 text-center md:text-start animate-entrance-left">Cast</h3>
-        <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-8 mb-4">
+        <ul className="w-full max-w-[1060px] grid grid-cols-mobile sm:grid-cols-lg-screen justify-items-center gap-6 m-auto mt-8 mb-4">
           {data.characters.map(char => {
             const charUrlParts = char.split('/').filter(Boolean)
             const charId = Number(charUrlParts[charUrlParts.length - 1])

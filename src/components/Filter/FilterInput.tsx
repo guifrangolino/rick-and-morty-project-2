@@ -11,9 +11,10 @@ type FilterInputProps = {
   paramsList: {
     [index: string]: any
   }
+  widthFull?: boolean
 }
 
-export function FilterInput({ inputValue, setInputValue, paramsList }: FilterInputProps) {
+export function FilterInput({ inputValue, setInputValue, paramsList, widthFull }: FilterInputProps) {
   const router = useRouter()
 
   function handleFilterChange(type: string, filter: string | null) {
@@ -26,7 +27,7 @@ export function FilterInput({ inputValue, setInputValue, paramsList }: FilterInp
       }
     }
 
-    router.push(params.join(''))
+    router.replace(params.join(''), { scroll: false })
   }
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export function FilterInput({ inputValue, setInputValue, paramsList }: FilterInp
   }, [inputValue])
 
   return (
-    <div className="relative max-w-[240px] w-full">
+    <div className={`relative max-w-[400px] w-full ${!widthFull && 'lg:max-w-[240px]'} basis-[70%]`}>
       <Search
         className="absolute top-0 bottom-0 w-4 h-4 my-auto left-4 cursor-pointer"
       />

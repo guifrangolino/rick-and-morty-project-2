@@ -60,10 +60,10 @@ export default async function CharacterDetail({ params }: { params: { id: string
         </Link>
       </Button>
 
-      <div className="w-full flex justify-around items-center mt-2 mb-8">
+      <div className="w-full flex flex-col md:flex-row gap-6 justify-around items-center my-8">
         <div className="relative w-full max-w-xs animate-entrance-center">
           <Image src={frame} alt="Picture Frame" className="z-[1] relative top-0 left-0 w-full" />
-          <Image src={data.image} alt="Rick Picture" width={250} height={250} className="w-full px-4 pt-8 scale-[1.03] absolute top-0" />
+          <Image src={data.image} alt="Rick Picture" width={250} height={250} className="w-full absolute top-[5%] left-0 scale-[0.88]" />
           <h2 title={data.name} className="z-[2] text-black absolute bottom-0 font-handwrite text-4xl p-4 w-full text-center truncate">{data.name}</h2>
         </div>
 
@@ -84,7 +84,7 @@ export default async function CharacterDetail({ params }: { params: { id: string
 
       <div className="w-full">
         <h3 className="text-3xl my-4 text-center md:text-start animate-entrance-left">Episodes</h3>
-        <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly m-auto mt-8 mb-4">
+        <ul className="w-full max-w-[1060px] grid grid-cols-mobile sm:grid-cols-lg-screen justify-items-center gap-6 m-auto mt-8 mb-4">
           {data.episode.map((ep, index) => {
             const epUrlParts = ep.split('/').filter(Boolean)
             const epId = Number(epUrlParts[epUrlParts.length - 1])

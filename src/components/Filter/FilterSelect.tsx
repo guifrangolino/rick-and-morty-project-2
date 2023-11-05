@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Select,
   SelectContent,
@@ -35,18 +33,19 @@ export function FilterSelect({ queryParam, placeholder, type, selectOptions, par
       }
     }
 
-    router.push(params.join(''))
+    router.replace(params.join(''), { scroll: false })
   }
 
   return (
     <Select
+      defaultValue={queryParam ?? ''}
       onValueChange={(selectValue) => handleFilterChange(type, selectValue)}
-      defaultValue={queryParam ?? undefined}
+      value={queryParam ?? ''}
     >
       <SelectTrigger className="w-full max-w-[240px] truncate">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className="overflow-y-auto max-h-[13rem]">
+      <SelectContent className="overflow-y-auto max-h-[215px]">
         {selectOptions.map((specie, index) => (
           <SelectItem key={index} value={specie.value}>{specie.label}</SelectItem>
         ))}

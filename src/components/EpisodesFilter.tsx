@@ -17,7 +17,13 @@ export function EpisodesFilter() {
   return (
     <>
       <Filter.Root>
-        <FilterInput inputValue={inputValue} setInputValue={setInputValue} paramsList={paramsList} />
+        <FilterInput
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          paramsList={paramsList}
+          widthFull
+        />
+        <Filter.Clear path='/episodes' setInputValue={setInputValue} />
       </Filter.Root>
     </>
   )

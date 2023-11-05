@@ -6,7 +6,7 @@ type FilterRootProps = {
 
 export function FilterRoot({ children }: FilterRootProps) {
   return (
-    <div className="w-full grid grid-cols-2 justify-items-center gap-6 my-6 md:flex md:items-center md:justify-center">
+    <div className={`w-full flex flex-wrap justify-center items-center gap-4 lg:gap-6 my-6 lg:flex-row lg:flex-nowrap`}>
       {children}
     </div>
   )

@@ -5,6 +5,6 @@ type NoteTitleProps = {
 
 export function NoteTitle({ text, underline }: NoteTitleProps) {
   return (
-    <p className={`text-xl ${underline ? 'underline underline-offset-4' : ''}`}>{text}</p>
+    <p title={text} className={`text-lg sm:text-xl ${underline ? 'underline underline-offset-4' : ''} truncate w-full`}>{text}</p>
   )
 }

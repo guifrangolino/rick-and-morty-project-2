@@ -45,13 +45,14 @@ export function CharactersList() {
       },
       initialPageParam: 1,
       getNextPageParam: (_lastPage, allPages) => allPages.length < pageLimit ? allPages.length + 1 : undefined,
-      retry: false
+      retry: false,
+      refetchOnWindowFocus: false
     }
   )
 
   return (
     <>
-      <ul className="w-full max-w-[1060px] flex flex-wrap gap-6 justify-evenly my-4">
+      <ul className="w-full max-w-[1060px] grid grid-cols-mobile sm:grid-cols-lg-screen justify-items-center gap-6 my-4">
         {isFetching && <CharactersListSkeleton />}
 
         {isError && <NotFound text='Character Not Found.' />}

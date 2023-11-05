@@ -89,6 +89,16 @@ module.exports = {
         'char-note': '0.9',
         'info-note-short': '1.3',
       },
+      screens: {
+        'md-lg': '884px',
+      },
+      minHeight: {
+        'homeHeight': ['calc(100vh-74px)', 'calc(100dvh-74px)', 'calc(100svh-74px)'],
+      },
+      gridTemplateColumns: {
+        'lg-screen': 'repeat(auto-fit, minmax(240px, 1fr))',
+        'mobile': 'repeat(2, minmax(150px, 1fr))'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

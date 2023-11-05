@@ -9,6 +9,9 @@ const shadowsIntoLight = Shadows_Into_Light_Two({ subsets: ['latin'], weight: '4
 
 export const metadata: Metadata = {
   title: 'Rick And Morty Project',
+  other: {
+    google: "notranslate"
+  }
 }
 
 export default function RootLayout({

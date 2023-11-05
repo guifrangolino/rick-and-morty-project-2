@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Filter } from "@/components/Filter";
-import { FilterInput } from "@/components/Filter/FilterInput";
 import { useSearchParams } from "next/navigation";
 import { locationsTypeOptions, dimensionsOptions } from '@/assets/selectsOptions'
 
@@ -22,21 +21,28 @@ export function LocationsFilter() {
   return (
     <>
       <Filter.Root>
-        <FilterInput inputValue={inputValue} setInputValue={setInputValue} paramsList={paramsList} />
-        <Filter.Select
-          placeholder="Type"
-          type='type'
-          selectOptions={locationsTypeOptions}
-          queryParam={type}
+        <Filter.Input
+          inputValue={inputValue}
+          setInputValue={setInputValue}
           paramsList={paramsList}
         />
-        <Filter.Select
-          placeholder="Dimension"
-          type='dimension'
-          selectOptions={dimensionsOptions}
-          queryParam={dimension}
-          paramsList={paramsList}
-        />
+        <Filter.ModalArea isLocation>
+          <Filter.Select
+            placeholder="Type"
+            type='type'
+            selectOptions={locationsTypeOptions}
+            queryParam={type}
+            paramsList={paramsList}
+          />
+          <Filter.Select
+            placeholder="Dimension"
+            type='dimension'
+            selectOptions={dimensionsOptions}
+            queryParam={dimension}
+            paramsList={paramsList}
+          />
+        </Filter.ModalArea>
+        <Filter.Clear path='/locations' setInputValue={setInputValue} />
       </Filter.Root>
     </>
   )
